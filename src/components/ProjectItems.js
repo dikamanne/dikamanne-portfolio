@@ -2,8 +2,8 @@
 const projectItems = [
   {
     id: 1,
-    title: "001",
-    desc: "Project 001",
+    title: "project 001: Crude Imperialism",
+    desc: "an exploration of the relationship between oil and nigeria's state of governance",
     country: "Nigeria",
     bg: "#74b9ff",
   },

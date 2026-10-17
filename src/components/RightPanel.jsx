@@ -21,10 +21,10 @@ function RightPanel({ projects }) {
             href={`/project/${item.id}`} 
             style={{ textDecoration: "none", color: "inherit" }}
           >
-            {/* Vertical layout stack matching square block with labels */}
+            
             <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
               
-              {/* Perfect Square Tile Box */}
+              {/* tile - want when i hover a black and white gif plays*/}
               <div 
                 style={{
                   aspectRatio: "1 / 1",
@@ -37,28 +37,16 @@ function RightPanel({ projects }) {
                   transition: "transform 0.2s ease, box-shadow 0.2s ease",
                   cursor: "pointer"
                 }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = "translateY(-5px)";
-                  e.currentTarget.style.boxShadow = "0 8px 20px rgba(0,0,0,0.12)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = "translateY(0)";
-                  e.currentTarget.style.boxShadow = "0 4px 12px rgba(0,0,0,0.06)";
-                }}
+                
               >
-                {/* Center-aligned text identifier */}
-                <span style={{ color: "white", fontSize: "2rem", fontWeight: "bold" }}>
-                  {item.title}
-                </span>
+                
               </div>
 
-              {/* Typography section sitting safely underneath */}
+              {/* item description */}
               <div style={{ paddingLeft: "4px", fontFamily: "sans-serif" }}>
-                <h5 style={{ margin: "0 0 2px 0", fontSize: "1rem", fontWeight: "600", color: "#333" }}>
-                  {item.title}
-                </h5>
+                
                 <span style={{ fontSize: "0.8rem", color: "#888", textTransform: "uppercase", letterSpacing: "0.5px" }}>
-                  {item.desc}
+                  {item.title}
                 </span>
               </div>
 
