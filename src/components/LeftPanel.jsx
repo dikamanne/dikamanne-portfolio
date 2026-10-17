@@ -1,5 +1,6 @@
 import React from "react";
 import InteractiveMap from "./InteractiveMap";
+import MapSection from "./MapSection";
 
 function LeftPanel({ availableCountries, activeCountry, setActiveCountry }) {
   return (
@@ -21,8 +22,9 @@ function LeftPanel({ availableCountries, activeCountry, setActiveCountry }) {
           Click on the map to see what I've explored!
         </p>
       </div>
-
-      {/* map */}
+      
+      {/* map
+       */}
       <div 
         className="flex-grow-1 bg-light rounded d-flex align-items-center justify-content-center text-secondary border border-dashed"
         style={{ minHeight: "250px", overflow: "hidden" }}
@@ -33,7 +35,14 @@ function LeftPanel({ availableCountries, activeCountry, setActiveCountry }) {
           activeCountry={activeCountry}
           onCountryClick={setActiveCountry}
         />
+
+      
+      </div> 
+
+      <div>
+        <MapSection />
       </div>
+
     </div>
   );
 }

@@ -10,6 +10,8 @@ const MAP_PIN_COORDINATES = {
 
 export default function InteractiveMap({ availableCountries, activeCountry, onCountryClick }) {
   return (
+
+  
     <div style={{ 
       position: 'relative', 
       width: '100%', 
@@ -19,17 +21,17 @@ export default function InteractiveMap({ availableCountries, activeCountry, onCo
       overflow: 'hidden'
     }}>
       <svg viewBox="0 0 800 400" width="100%" height="100%">
-        {/* Abstract global landmass shape placeholder */}
-        <rect x="50" y="50" width="700" height="300" fill="#f0fdf4" rx="8" />
+       
+        <rect x="50" y="50" width="700" height="300" fill="#f0fdf4" rx="8" /> // this is replaced with svg world map
 
-        {/* Dynamic Marker Plotting Engine */}
+        
         {availableCountries.map((countryName) => {
-          const pin = MAP_PIN_COORDINATES[countryName];
+          const pin = MAP_PIN_COORDINATES[countryName]; //instead of pin have this pin be directed to the clickable svg part
           
-          // Safety fallback: if coordinates don't exist yet, skip rendering
+          
           if (!pin) return null; 
 
-          const isSelected = activeCountry === countryName;
+          const isSelected = activeCountry === countryName; //countryName be svg clickable and same as projectItems country tag
 
           return (
             <g 
