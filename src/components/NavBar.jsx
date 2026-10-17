@@ -1,45 +1,23 @@
-import React from "react";
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import BorderColorIcon from '@mui/icons-material/BorderColor';
-import EmailRoundedIcon from "@mui/icons-material/EmailRounded";
-import LinkedInIcon from "@mui/icons-material/LinkedIn";
-import GitHubIcon from '@mui/icons-material/GitHub';
-import "../styles/NavBar.css";
+import React from 'react';
+import './NavBar.css'; // Make sure the path matches your CSS file name
 
+const NavBar = () => {
+  return (
+    
+    
+    <nav className="navbar-container">
+      
+      <h1 className="navbar-brand">Dika Manne</h1>
+      
+      {/* Navigation links centered below */}
+      <div className="navbar-links">
+        <a href="#home" className="nav-item">Home</a>
+        <a href="#about" className="nav-item">About</a>
+        <a href="#services" className="nav-item">Projects</a>
+        <a href="#contact" className="nav-item">Field Notes</a>
+      </div>
+    </nav>
+  );
+};
 
-class NavBar extends React.Component {
-    render() {
-      return (
-        <Navbar fixed="top" className="navbar">
-          <Container>
-            <Navbar.Toggle aria-controls="basic-navbar-nav" />
-            <Navbar.Collapse id="basic-navbar-nav">
-              <Nav className="me-auto">
-                <Nav.Link href="#intro">Home</Nav.Link>
-                <Nav.Link href="#about">About</Nav.Link>
-                <Nav.Link href="#projects">Projects</Nav.Link>
-              </Nav>
-              <Nav className="ml-auto">
-                <Nav.Link href="mailto:dikamannen@gmail.com">
-                  <EmailRoundedIcon style={{ fontSize: 20 }}></EmailRoundedIcon>
-                </Nav.Link>
-                <Nav.Link href="https://github.com/dikamanne" target="_blank">
-                  <GitHubIcon style={{ fontSize: 19 }}></GitHubIcon>
-                </Nav.Link>
-                <Nav.Link href="https://www.linkedin.com/in/dika-manne/" target="_blank">
-                  <LinkedInIcon style={{ fontSize: 21 }}></LinkedInIcon>
-                </Nav.Link>
-                <Nav.Link href="https://dikamanne.substack.com" target="_blank">
-                  <BorderColorIcon style={{ fontSize: 20 }}></BorderColorIcon>
-                </Nav.Link>
-              </Nav>
-            </Navbar.Collapse>
-          </Container>
-        </Navbar>
-      );
-    }
-  }
-
-  export default NavBar;
+export default NavBar;

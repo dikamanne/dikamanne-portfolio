@@ -1,0 +1,51 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
+
+/* Rest of your CSS */
+.navbar-brand {
+  font-family: 'Cormorant Garamond', serif;
+}
+
+/* Container handles the overall layout */
+.navbar-container {
+  display: flex;
+  flex-direction: column; /* Stacks the name and links vertically */
+  align-items: center;     /* Centers everything horizontally */
+  padding: 10px 0;
+  padding-bottom: 0px;
+  width: 100%;
+}
+
+/* Stylized typography for your brand/name */
+.navbar-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 0 0 10px 0; /* Space underneath the brand name */
+  
+}
+
+
+/* Link wrapper layout */
+.navbar-links {
+  display: flex;
+  justify-content: center; /* Centers links inside the flex container */
+  gap: 30px;               /* Defines the specific space between individual links */
+  flex-wrap: wrap;         /* Allows links to wrap elegantly on small screens */
+}
+
+/* Individual link styles */
+.nav-item {
+  text-decoration: none;
+  color: #4b5563;
+  font-size: 1.1rem;
+  font-weight: 500;
+  transition: color 0.2s ease-in-out;
+}
+
+/* Interactive hover state */
+.nav-item:hover {
+  color: grey;
+}
