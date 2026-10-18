@@ -2,54 +2,18 @@
 const projectItems = [
   {
     id: 1,
-    title: "project 001: Crude Imperialism",
+    title: "project 001: Crude Imperialism [WIP]",
     desc: "an exploration of the relationship between oil and nigeria's state of governance",
     country: "Nigeria",
-    bg: "#74b9ff",
+    bg: "#c0c8cf",
   },
   {
     id: 2,
-    title: "002",
+    title: "project 002: Sayatoma Practices and Co-Ops [WIP]",
     desc: "Project 002",
     country: "Taiwan",
-    bg: "#a29bfe",
-  },
-  {
-    id: 3,
-    title: "002",
-    desc: "Project 002",
-    country: "Taiwan",
-    bg: "#a29bfe",
-  },
-  {
-    id: 4,
-    title: "002",
-    desc: "Project 002",
-    country: "Taiwan",
-    bg: "#a29bfe",
-  },
-
-  {
-    id: 5,
-    title: "002",
-    desc: "Project 002",
-    country: "Taiwan",
-    bg: "#a29bfe",
-  },
-  {
-    id: 6,
-    title: "002",
-    desc: "Project 002",
-    country: "Taiwan",
-    bg: "#a29bfe",
-  },
-{
-    id: 7,
-    title: "002",
-    desc: "Project 002",
-    country: "Taiwan",
-    bg: "#a29bfe",
-  },
+    bg: "#a0aebc",
+  }
 
 ];
 

@@ -1,13 +1,12 @@
 
 import React from "react";
+import './RightPanel.css';
 
 // reading from dynamic passed props 
 function RightPanel({ projects }) {
   return (
-    <div style={{ padding: "2.5rem 2.5rem 5rem 2.5rem" }}>
-      <h3 style={{ marginBottom: "2rem", fontWeight: "600", color: "#222", fontFamily: "sans-serif" }}>
-        Projects 
-      </h3>
+    <div className="right-column" style={{ padding: "2.5rem 2.5rem 5rem 2.5rem" }}>
+    
       
       {/* grid parent element wrapping the project items */}
       <div style={{

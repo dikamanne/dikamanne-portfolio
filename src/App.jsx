@@ -22,7 +22,7 @@ export default function App() {
     : projectItems;
 
   return (
-    <div className="App" style={{ paddingTop: "10px", overflow: "hidden", height: "100vh", display: "flex", flexDirection: "column"}}>
+    <div className="App"class="texture-overlay" style={{ paddingTop: "10px", overflow: "hidden", height: "100vh", display: "flex", flexDirection: "column"}}>
       <NavBar />
 
       <Container fluid style={{ paddingTop: "40px", height: "calc(100vh - 40px)" }}>
@@ -39,7 +39,6 @@ export default function App() {
             flex: "0 0 40%", 
             height: "100%",
             borderRight: "1px solid #e0e0e0",
-            backgroundColor: "#fefbea",
             overflow: "hidden"
           }}>
             
@@ -55,7 +54,6 @@ export default function App() {
             flex: "1 1 60%",
             height: "100%",
             overflowY: "auto", 
-            backgroundColor: "#e0dbc1",
             overscrollBehaviorY: "contain"
           }}>
           
