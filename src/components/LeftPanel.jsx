@@ -9,14 +9,7 @@ function LeftPanel({ availableCountries, activeCountry, setActiveCountry }) {
         <div className="left-column-header-section">
           <h2 className="left-column-header">Welcome to My Portfolio</h2>
           
-          {activeCountry && (
-            <button 
-              className="active-country-button"
-              onClick={() => setActiveCountry(null)}
-            >
-              Clear Filter ({activeCountry})
-            </button>
-          )}
+          
         </div>
         <p className="left-column-desc" style={{ lineHeight: "1.6" }}>
           Click on the map to see what I've explored!
@@ -33,6 +26,15 @@ function LeftPanel({ availableCountries, activeCountry, setActiveCountry }) {
           onCountryClick={setActiveCountry}
         />
       </div>
+
+      {activeCountry && (
+            <button 
+              className="active-country-button"
+              onClick={() => setActiveCountry(null)}
+            >
+              Clear Filter ({activeCountry})
+            </button>
+          )}
 
     </div>
   );
