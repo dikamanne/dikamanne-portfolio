@@ -1,0 +1,73 @@
+.cork-board {
+  max-width: 1100px;
+  margin: 2rem auto;
+  padding: 3rem 2.5rem;
+  border: 14px solid #6b4423;           /* wooden frame */
+  border-radius: 6px;
+  box-shadow: inset 0 0 30px rgba(0,0,0,.35), 0 10px 30px rgba(0,0,0,.2);
+  background-color: #c8a074;
+  background-image:
+    radial-gradient(rgba(90,55,25,.35) 1px, transparent 1.5px),
+    radial-gradient(rgba(255,255,255,.18) 1px, transparent 1.5px),
+    radial-gradient(rgba(60,35,15,.25) 2px, transparent 2.5px);
+  background-size: 11px 11px, 17px 17px, 29px 29px;
+  background-position: 0 0, 5px 8px, 12px 3px;
+}
+
+.cork-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 2.5rem 2rem;
+}
+
+.pin-card {
+  position: relative;
+  background: #fffdf8;
+  padding: 12px 12px 14px;
+  text-decoration: none;
+  color: #333;
+  box-shadow: 2px 6px 12px rgba(0,0,0,.3);
+  transform: rotate(var(--rot));
+  transition: transform .25s ease, box-shadow .25s ease;
+}
+.pin-card:hover {
+  transform: rotate(0deg) scale(1.06) translateY(-4px);
+  box-shadow: 4px 14px 22px rgba(0,0,0,.35);
+  z-index: 2;
+}
+
+.pin {
+  position: absolute;
+  top: -8px; left: 50%;
+  width: 16px; height: 16px;
+  margin-left: -8px;
+  border-radius: 50%;
+  box-shadow: inset -2px -2px 3px rgba(0,0,0,.35), 1px 3px 4px rgba(0,0,0,.4);
+  z-index: 3;
+}
+
+.pin-photo {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+.pin-photo img {
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  transition: opacity .25s ease;
+}
+.pin-photo .gif { opacity: 0; filter: grayscale(1); }
+.pin-card:hover .gif { opacity: 1; }
+.pin-card:hover .still { opacity: 0; }
+
+.pin-title {
+  margin: .7rem 0 0;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .cork-board { border-width: 8px; padding: 2rem 1rem; }
+}
