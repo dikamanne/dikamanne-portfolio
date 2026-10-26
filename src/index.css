@@ -1,17 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Courier+Prime&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@500;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Courier+Prime&family=Special+Elite&display=swap');
 
 :root {
-  --wall: #e8ebe4;
-  --ink: #2b2622;
-  --cork: #c89f72;
-  --paper: #fffdf7;
-  --tomato: #d4503f;
-  --tile: #2f5d8c;
-  --rose: #e59ab0;
-  --mustard: #e2b13c;
+  --wall: #ddd8cf;
+  --ink: #241a1c;
+  --cork: #8d6c52;
+  --paper: #f3ede1;
+  --tomato: #6e1423;        /* burgundy accent (name kept so older files still work) */
+  --burgundy-deep: #4a0d18;
+  --tile: #4b4547;
+  --rose: #a8737c;
+  --mustard: #c9a96e;       /* brass */
+  --charcoal: #2d2a2b;
+  --stamp: #c4672a;         /* film date-stamp orange */
   --display: 'Cormorant Garamond', serif;
   --hand: 'Caveat', cursive;
-  --type: 'Courier Prime', monospace;
+  --type: 'Special Elite', 'Courier Prime', monospace;
 }
 
 * { box-sizing: border-box; }
@@ -26,14 +29,22 @@ body {
   line-height: 1.6;
 }
 
-.texture-overlay {
-  background-image: radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 4px 4px;
-  min-height: 100vh;
+.texture-overlay { min-height: 100vh; }
+
+/* film grain over the whole page */
+.texture-overlay::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 50;
+  opacity: 0.18;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .1 0 0 0 0 .05 0 0 0 0 .05 0 0 0 .6 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
 
 a { color: inherit; }
-:focus-visible { outline: 3px solid var(--tile); outline-offset: 3px; }
+:focus-visible { outline: 3px solid var(--tomato); outline-offset: 3px; }
 
 h2, h3 { font-weight: 600; line-height: 1.15; margin: 0; }
 .hand { font-family: var(--hand); color: var(--tomato); font-size: 1.7rem; margin: 0; }

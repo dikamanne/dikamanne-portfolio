@@ -1,20 +1,20 @@
-.map-section { position: relative; aspect-ratio: 2 / 1; max-height: 480px; width: 100%; background: #cfe0e6; overflow: hidden; }
+.map-section { position: relative; aspect-ratio: 2 / 1; max-height: 480px; width: 100%; background: #c9ccca; overflow: hidden; }
 .map-svg { width: 100%; height: 100%; cursor: grab; touch-action: pan-y; user-select: none; }
 .map-svg:active { cursor: grabbing; }
 .map-svg svg { width: 100% !important; height: 100% !important; display: block; background: none !important; }
 
 .map-svg path {
-  fill: #efe6d2 !important;
-  stroke: #b8ab90 !important;
+  fill: #ece4d6 !important;
+  stroke: #b3a998 !important;
   stroke-width: .6px !important;
   vector-effect: non-scaling-stroke;
   cursor: pointer;
   transition: fill .2s;
 }
-.map-svg path:hover { fill: #e3c79d !important; }
-.map-svg path[data-stamped="true"] { fill: var(--tile) !important; stroke: #fff !important; }
-.map-svg path[data-active="true"] { fill: var(--tomato) !important; stroke: #fff !important; }
-.map-svg path[data-wrong="true"] { fill: #f1a89f !important; animation: flash .5s; }
+.map-svg path:hover { fill: #d9c7b3 !important; }
+.map-svg path[data-stamped="true"] { fill: var(--tomato) !important; stroke: var(--paper) !important; }
+.map-svg path[data-active="true"] { fill: var(--charcoal) !important; stroke: var(--paper) !important; }
+.map-svg path[data-wrong="true"] { fill: #c98a92 !important; animation: flash .5s; }
 @keyframes flash { 25%, 75% { opacity: .3; } }
 
 .map-controls { position: absolute; right: 12px; top: 12px; display: flex; flex-direction: column; gap: 6px; }
@@ -22,6 +22,6 @@
   width: 36px; height: 36px; border-radius: 50%;
   border: 2px solid var(--ink); background: var(--paper);
   font: 700 1.2rem var(--display); cursor: pointer;
-  transition: transform .15s, background .15s;
+  transition: transform .15s, background .15s, color .15s;
 }
-.map-controls button:hover { background: var(--mustard); transform: scale(1.1); }
+.map-controls button:hover { background: var(--tomato); color: var(--paper); transform: translateY(-2px); }

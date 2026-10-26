@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import "./CursorTrail.css";
 
-const colors = ["#d4503f", "#2f5d8c", "#e2b13c", "#e59ab0"];
+const colors = ["#6e1423", "#f3ede1", "#8a8584", "#c9a96e"];
 
 export default function CursorTrail() {
   useEffect(() => {

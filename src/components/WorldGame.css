@@ -3,11 +3,7 @@
 .world-head h3 { font-size: 2.2rem; margin: .1rem 0 .5rem; }
 .world-head p:last-child { max-width: 58ch; margin: 0 auto; }
 
-.map-frame {
-  border: 10px solid var(--paper);
-  box-shadow: 2px 8px 18px rgba(0,0,0,.25);
-  transform: rotate(-.6deg);
-}
+.map-frame { border: 10px solid var(--paper); box-shadow: 2px 8px 18px rgba(30, 8, 12, .3); }
 
 .world-lower { display: grid; grid-template-columns: 1.4fr 1fr; gap: 1.6rem; margin-top: 2rem; }
 .clue-label { font-family: var(--type); font-size: .72rem; letter-spacing: 2px; color: #6b6259; display: block; margin-bottom: .4rem; }
@@ -15,45 +11,45 @@
 .clue-card {
   background: var(--paper); padding: 1.2rem 1.4rem;
   border: 8px solid transparent;
-  border-image: repeating-linear-gradient(135deg, #d4503f 0 10px, #fffdf7 10px 20px, #2f5d8c 20px 30px, #fffdf7 30px 40px) 8;
-  box-shadow: 2px 6px 12px rgba(0,0,0,.2);
+  border-image: repeating-linear-gradient(135deg, var(--tomato) 0 10px, var(--paper) 10px 20px, var(--charcoal) 20px 30px, var(--paper) 30px 40px) 8;
+  box-shadow: 2px 6px 12px rgba(30, 8, 12, .25);
 }
 .clue-text { font-size: 1.25rem; margin: 0 0 .8rem; }
 .game-btn {
   font: 700 1rem var(--display); padding: .35rem 1.2rem; cursor: pointer;
   border: 2px solid var(--ink); border-radius: 999px; background: transparent;
-  transition: background .2s, color .2s, transform .2s;
+  transition: background .2s, color .2s;
 }
-.game-btn:hover { background: var(--ink); color: var(--paper); transform: rotate(-2deg); }
+.game-btn:hover { background: var(--ink); color: var(--paper); }
 .game-msg { font-family: var(--hand); font-size: 1.4rem; color: var(--tomato); min-height: 1.6rem; margin: .6rem 0 0; }
 
-.passport { background: #2f5d8c; color: #fffdf7; padding: 1.2rem 1.4rem; border-radius: 4px 12px 12px 4px; box-shadow: 2px 6px 12px rgba(0,0,0,.25); }
-.passport .clue-label { color: #cfe0ee; }
+.passport { background: var(--burgundy-deep); color: var(--paper); padding: 1.2rem 1.4rem; border-radius: 4px 12px 12px 4px; box-shadow: 2px 6px 12px rgba(30, 8, 12, .35); }
+.passport .clue-label { color: #d8b9bd; }
 .stamps { display: flex; flex-wrap: wrap; gap: .8rem; }
 .stamp {
   width: 84px; height: 84px; border-radius: 50%; display: grid; place-items: center; text-align: center;
-  font-family: var(--type); font-size: .7rem; padding: .3rem; line-height: 1.2;
-  border: 2px dashed rgba(255,255,255,.4); color: rgba(255,255,255,.5); background: transparent;
+  font-family: var(--type); font-size: .65rem; padding: .3rem; line-height: 1.2;
+  border: 2px dashed rgba(243, 237, 225, .35); color: rgba(243, 237, 225, .45); background: transparent;
   transform: rotate(var(--r));
 }
 .stamp.got {
-  border: 3px double #fffdf7; color: #fffdf7; background: rgba(255,255,255,.1); cursor: pointer;
-  animation: stamp .45s cubic-bezier(.2,.9,.3,1.4);
+  border: 3px double var(--paper); color: var(--paper); background: rgba(255, 255, 255, .08); cursor: pointer;
+  animation: stamp .4s ease-out;
 }
-.stamp.got:hover { background: rgba(255,255,255,.25); }
-@keyframes stamp { from { transform: rotate(calc(var(--r) * 3)) scale(2.2); opacity: 0; } }
+.stamp.got:hover { background: rgba(255, 255, 255, .2); }
+@keyframes stamp { from { transform: rotate(var(--r)) scale(1.8); opacity: 0; } }
 
 .unlocked { margin-top: 1.6rem; display: grid; gap: 1rem; }
 .unlock-card {
   display: grid; gap: .2rem; text-decoration: none;
-  background: #f7e58b; padding: 1.1rem 1.4rem; transform: rotate(-.8deg);
-  box-shadow: 2px 6px 12px rgba(0,0,0,.22);
-  animation: pop .45s cubic-bezier(.2,.9,.3,1.3);
-  transition: transform .25s;
+  background: var(--paper); padding: 1.1rem 1.4rem; border-left: 6px solid var(--tomato);
+  box-shadow: 2px 6px 12px rgba(30, 8, 12, .25);
+  animation: pop .4s ease-out;
+  transition: transform .2s, box-shadow .2s;
 }
-.unlock-card:hover { transform: rotate(0) scale(1.02); }
+.unlock-card:hover { transform: translateY(-4px); box-shadow: 4px 12px 18px rgba(30, 8, 12, .3); }
 .unlock-card strong { font-size: 1.5rem; }
 .unlock-card em { font-family: var(--hand); font-style: normal; font-size: 1.35rem; color: var(--tomato); }
-@keyframes pop { from { transform: translateY(20px) scale(.92); opacity: 0; } }
+@keyframes pop { from { transform: translateY(16px); opacity: 0; } }
 
 @media (max-width: 720px) { .world-lower { grid-template-columns: 1fr; } }

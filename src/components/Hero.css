@@ -1,7 +1,7 @@
 .hero { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 3rem; text-align: center; }
 .hero-hand { display: inline-block; transform: rotate(-3deg); margin-bottom: 0.4rem; }
 .hero-title {
-  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-size: clamp(1.5rem, 4vw, 3.4rem);
   font-style: italic;
   font-weight: 600;
   margin-bottom: 1.1rem;

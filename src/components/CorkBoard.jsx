@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./CorkBoard.css";
 
-const pinColors = ["#d4503f", "#2f5d8c", "#e2b13c", "#4f9a6b"];
-const tilts = [-3, 2.5, -1.5, 3, -2, 1.5];
+const pinColors = ["#6e1423", "#2d2a2b", "#b08d57"];
+const tilts = [-0.8, 0.6, -0.4, 0.9, -0.6, 0.4];
 const vars = (i) => ({ "--i": i, "--rot": `${tilts[i % tilts.length]}deg` });
 
-// Swap for your own photos later: { src: "/strip/1.jpg" }
-const STRIP = [
-  { emoji: "🏮", bg: "#e59ab0" },
-  { emoji: "🌴", bg: "#9fc7a8" },
-  { emoji: "✈️", bg: "#a9c4de" },
-  { emoji: "🍜", bg: "#f0d38a" },
+// Film strip frames. Add your own photos: { tone: "#8a8584", src: "/film/1.jpg" }
+const FILM = [
+  { tone: "#8a8584" },
+  { tone: "#6e6a68" },
+  { tone: "#a39d99" },
+  { tone: "#7d5a5f" },
 ];
 
 const Pin = ({ i }) => (
@@ -28,17 +28,21 @@ function Photo({ item }) {
   );
 }
 
-function Polaroid({ item, i, extra }) {
+function Meta({ item }) {
   return (
-    <a
-      href={`/project/${item.id}`}
-      className={`piece polaroid ${extra ? "extra" : "slot-p0"}`}
-      style={vars(i)}
-    >
+    <p className="tag">
+      {item.status && <b className="wip">{item.status}</b>} {item.tag}
+    </p>
+  );
+}
+
+function Polaroid({ item, i }) {
+  return (
+    <a href={`/project/${item.id}`} className="piece polaroid" style={vars(i)}>
       <Pin i={i} />
       <Photo item={item} />
       <p className="caption">{item.title}</p>
-      <p className="tag">{item.status ? `${item.status}, ` : ""}{item.tag}</p>
+      <Meta item={item} />
       <span className="open-tab">view project</span>
     </a>
   );
@@ -46,14 +50,14 @@ function Polaroid({ item, i, extra }) {
 
 function Postcard({ item, i }) {
   return (
-    <a href={`/project/${item.id}`} className="piece postcard slot-p1" style={vars(i)}>
+    <a href={`/project/${item.id}`} className="piece postcard" style={vars(i)}>
       <Tape />
       <Photo item={item} />
       <div className="postcard-body">
         <span className="postmark">{item.country}<br />{item.num}</span>
         <p className="caption">{item.title}</p>
         <p className="postcard-desc">{item.desc}</p>
-        <p className="tag">{item.status ? `${item.status}, ` : ""}{item.tag}</p>
+        <Meta item={item} />
       </div>
       <span className="open-tab">view project</span>
     </a>
@@ -61,72 +65,144 @@ function Postcard({ item, i }) {
 }
 
 export default function CorkBoard({ projects }) {
-  const ref = useRef(null);
+  const sectionRef = useRef(null);
+  const trackRef = useRef(null);
   const [inView, setInView] = useState(false);
+  const [edge, setEdge] = useState({ start: true, end: false, pct: 0 });
 
+  // fade pieces in once the board is on screen
   useEffect(() => {
     if (!("IntersectionObserver" in window)) { setInView(true); return; }
     const io = new IntersectionObserver(
       ([e]) => { if (e.isIntersecting) { setInView(true); io.disconnect(); } },
       { threshold: 0.12 }
     );
-    io.observe(ref.current);
+    io.observe(sectionRef.current);
     return () => io.disconnect();
   }, []);
 
-  const firstPolaroid = projects.find((p) => p.type !== "postcard");
-  const firstPostcard = projects.find((p) => p.type === "postcard");
-  const extras = projects.filter((p) => p !== firstPolaroid && p !== firstPostcard);
+  // arrows + progress bar
+  const update = () => {
+    const el = trackRef.current;
+    if (!el) return;
+    const max = el.scrollWidth - el.clientWidth;
+    setEdge({
+      start: el.scrollLeft < 8,
+      end: el.scrollLeft > max - 8,
+      pct: max > 0 ? el.scrollLeft / max : 0,
+    });
+  };
+  useEffect(() => {
+    update();
+    window.addEventListener("resize", update);
+    return () => window.removeEventListener("resize", update);
+  }, [projects]);
+
+  const go = (dir) =>
+    trackRef.current.scrollBy({ left: dir * trackRef.current.clientWidth * 0.8, behavior: "smooth" });
+
+  let n = projects.length + 2; // running index for the decor pieces
 
   return (
-    <section id="projects" className={`cork-board ${inView ? "in-view" : ""}`} ref={ref}>
-      <div className="cork-grid">
-        <div className="piece note slot-note" style={vars(0)}>
-          <Tape />
-          this board is basically my brain: maps, film, ceramics, research and way too many
-          tabs. poke around ✦
-        </div>
+    <section id="projects" className={`cork-board ${inView ? "in-view" : ""}`} ref={sectionRef}>
+      <div className="board-label">
+        <span>THE BOARD</span>
+        <span>scroll or use the arrows</span>
+      </div>
 
-        {firstPolaroid && <Polaroid item={firstPolaroid} i={1} />}
+      <div className="board-frame">
+        <div className="lace lace-top" aria-hidden="true" />
 
-        <div className="piece strip slot-strip" style={vars(2)} aria-hidden="true">
-          {STRIP.map((f, k) => (
-            <div key={k} className="frame" style={{ background: f.bg, "--k": k }}>
-              {f.src ? <img src={f.src} alt="" /> : f.emoji}
+        <div
+          className="board-track"
+          ref={trackRef}
+          onScroll={update}
+          tabIndex={0}
+          role="region"
+          aria-label="Project board. Scroll sideways to see more."
+        >
+          <div className="col">
+            <div className="piece index-card" style={vars(0)}>
+              <Tape />
+              <span className="card-kicker">FIELD NOTES / 01</span>
+              <p>
+                This board is basically my brain: maps, film, ceramics, research and way too many
+                tabs.
+              </p>
+              <p className="scrawl">keep scrolling →</p>
+            </div>
+          </div>
+
+          <div className="col">
+            <div className="piece film" style={vars(1)} aria-hidden="true">
+              {FILM.map((f, k) => (
+                <div className="film-frame" key={k} style={{ background: f.tone }}>
+                  {f.src && <img src={f.src} alt="" />}
+                  <span>{21 + k}A</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {projects.map((p, k) => (
+            <div className="col" key={p.id}>
+              {p.type === "postcard" ? <Postcard item={p} i={k + 2} /> : <Polaroid item={p} i={k + 2} />}
             </div>
           ))}
-        </div>
 
-        <div className="piece tile slot-tile" style={vars(3)} aria-hidden="true">
-          <svg viewBox="0 0 100 100">
-            <rect width="100" height="100" fill="#fff" />
-            <g fill="#2f5d8c">
-              <path d="M0 0h50a50 50 0 0 1-50 50z" />
-              <path d="M100 0v50a50 50 0 0 1-50-50z" opacity=".55" />
-              <path d="M0 100V50a50 50 0 0 1 50 50z" opacity=".55" />
-              <path d="M100 100H50a50 50 0 0 1 50-50z" />
-            </g>
-            <circle cx="50" cy="50" r="9" fill="#fff" stroke="#2f5d8c" strokeWidth="3" />
-          </svg>
-        </div>
+          <div className="col stack">
+            <div className="piece tile" style={vars(n++)} aria-hidden="true">
+              <svg viewBox="0 0 100 100">
+                <rect width="100" height="100" fill="#f3ede1" />
+                <g fill="#6e1423">
+                  <path d="M0 0h50a50 50 0 0 1-50 50z" />
+                  <path d="M100 100H50a50 50 0 0 1 50-50z" />
+                </g>
+                <g fill="#8a8584">
+                  <path d="M100 0v50a50 50 0 0 1-50-50z" />
+                  <path d="M0 100V50a50 50 0 0 1 50 50z" />
+                </g>
+                <circle cx="50" cy="50" r="9" fill="#f3ede1" stroke="#2d2a2b" strokeWidth="3" />
+              </svg>
+            </div>
+            <div className="piece sticker s-burg" style={vars(n++)} aria-hidden="true">
+              FOLLOW<br />THE MONEY
+            </div>
+            <div className="piece sticker s-cream" style={vars(n++)} aria-hidden="true">
+              READ THE<br />FINE PRINT
+            </div>
+          </div>
 
-        <div className="piece sticker slot-s1" style={vars(4)} aria-hidden="true">🍒</div>
+          <div className="col stack">
+            <div className="piece lcd" style={vars(n++)} aria-hidden="true">
+              <div className="lcd-top"><span className="rec">● REC</span><span>00:04:12</span></div>
+              <div className="lcd-view"><i /><i /><i /><i /></div>
+              <div className="lcd-bottom">ISO 400 &nbsp; f/2.8 &nbsp; 1/60</div>
+            </div>
+            <div className="piece ticket" style={vars(n++)}>
+              <div className="ticket-inner">
+                <span>NOW READING</span>
+                <strong>Replace me: a book, law or report you’re into</strong>
+              </div>
+            </div>
+          </div>
 
-        {firstPostcard && <Postcard item={firstPostcard} i={5} />}
-
-        <div className="piece sticker slot-s2" style={vars(0)} aria-hidden="true">🌍</div>
-        <div className="piece sticker slot-s3" style={vars(3)} aria-hidden="true">🎞️</div>
-
-        <div className="piece ticket slot-ticket" style={vars(2)}>
-          <div className="ticket-inner">
-            <span>NOW READING</span>
-            <strong>Replace me: a book, law or report you’re into</strong>
+          <div className="col">
+            <div className="piece endcard" style={vars(n++)} aria-hidden="true">
+              <span>MORE SOON</span>
+              <p>next story loading…</p>
+            </div>
           </div>
         </div>
 
-        {extras.map((p, k) => (
-          <Polaroid key={p.id} item={p} i={k + 6} extra />
-        ))}
+        <button type="button" className="board-arrow prev" onClick={() => go(-1)} disabled={edge.start} aria-label="Scroll left">‹</button>
+        <button type="button" className="board-arrow next" onClick={() => go(1)} disabled={edge.end} aria-label="Scroll right">›</button>
+
+        <div className="lace lace-bottom" aria-hidden="true" />
+      </div>
+
+      <div className="board-progress" aria-hidden="true">
+        <span style={{ width: `${10 + edge.pct * 90}%` }} />
       </div>
     </section>
   );
