@@ -1,0 +1,16 @@
+.contact { padding: 0 1.5rem 3rem; text-align: center; }
+.contact-card {
+  max-width: 640px; margin: 0 auto; padding: 2rem 1.6rem;
+  background: var(--paper); transform: rotate(1deg);
+  border: 10px solid transparent;
+  border-image: repeating-linear-gradient(135deg, #d4503f 0 12px, #fffdf7 12px 24px, #2f5d8c 24px 36px, #fffdf7 36px 48px) 10;
+  box-shadow: 2px 8px 16px rgba(0,0,0,.22);
+  transition: transform .3s cubic-bezier(.2,.8,.3,1.4);
+}
+.contact-card:hover { transform: rotate(0) scale(1.02); }
+.contact-card h3 { font-size: 1.7rem; margin: .2rem 0 1rem; }
+.mail { font-family: var(--type); font-size: 1.1rem; text-underline-offset: 4px; }
+.contact-links { display: flex; justify-content: center; gap: 1.4rem; margin-top: 1rem; font-weight: 700; }
+.contact-links a { text-underline-offset: 4px; }
+.contact-links a:hover { color: var(--tomato); }
+.fine { font-family: var(--type); font-size: .75rem; color: #6b6259; margin-top: 1.6rem; }

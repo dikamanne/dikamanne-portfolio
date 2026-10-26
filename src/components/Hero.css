@@ -1,0 +1,19 @@
+.hero { max-width: 860px; margin: 0 auto; padding: 2rem 1.5rem 3rem; text-align: center; }
+.hero-hand { display: inline-block; transform: rotate(-3deg); margin-bottom: 0.4rem; }
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.4rem);
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+}
+.hero-sub { max-width: 58ch; margin: 0 auto 1.6rem; color: #4a423b; }
+.hero-link {
+  display: inline-block;
+  padding: 0.45rem 1.5rem;
+  border: 2px solid var(--ink);
+  border-radius: 999px;
+  text-decoration: none;
+  font-weight: 700;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+}
+.hero-link:hover { background: var(--ink); color: var(--paper); transform: rotate(-2deg); }

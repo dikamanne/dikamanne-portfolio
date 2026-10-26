@@ -1,52 +1,37 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
-
-/* Rest of your CSS */
-.navbar-brand {
-  font-family: 'Cormorant Garamond', serif;
-}
-
-/* Container handles the overall layout */
 .navbar-container {
   display: flex;
-  flex-direction: column; /* Stacks the name and links vertically */
-  align-items: center;     /* Centers everything horizontally */
-  padding: 10px 0;
-  padding-bottom: 15px;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.4rem 0 0.8rem;
   width: 100%;
 }
-
-/* Stylized typography for your brand/name */
 .navbar-brand {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 2.5rem;
-  font-weight: 800;
-  letter-spacing: 4px;
+  font-family: var(--display);
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 6px;
   text-transform: uppercase;
-  margin: 0 0 10px 0; /* Space underneath the brand name */
-  
+  margin: 0 0 0.4rem;
 }
-
-
-/* Link wrapper layout */
-.navbar-links {
-  display: flex;
-  justify-content: center; /* Centers links inside the flex container */
-  gap: 30px;               /* Defines the specific space between individual links */
-  flex-wrap: wrap;         /* Allows links to wrap elegantly on small screens */
-}
-
-/* Individual link styles */
+.navbar-links { display: flex; justify-content: center; gap: 1.8rem; flex-wrap: wrap; }
 .nav-item {
+  position: relative;
   text-decoration: none;
-  font-family: 'Cormorant Garamond', serif;
+  font-family: var(--display);
   color: #4b5563;
-  font-size: 1.1rem;
-  font-weight: 500;
-  transition: color 0.2s ease-in-out;
+  font-size: 1.15rem;
+  font-weight: 600;
+  transition: color 0.2s;
 }
-
-/* Interactive hover state */
-.nav-item:hover {
-  color: grey;
+.nav-item::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: -2px;
+  width: 100%; height: 2px;
+  background: var(--tomato);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
 }
+.nav-item:hover, .nav-item:focus-visible { color: var(--ink); }
+.nav-item:hover::after, .nav-item:focus-visible::after { transform: scaleX(1); }

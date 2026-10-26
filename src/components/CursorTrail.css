@@ -1,0 +1,14 @@
+.spark {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 14px;
+  transform: translate(-50%, -50%);
+  animation: spark 0.8s ease-out forwards;
+}
+@keyframes spark {
+  to {
+    transform: translate(calc(-50% + var(--dx)), calc(-50% + 34px)) rotate(140deg) scale(0.3);
+    opacity: 0;
+  }
+}

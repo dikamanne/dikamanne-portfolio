@@ -1,0 +1,3 @@
+#root { max-width: none; margin: 0; padding: 0; text-align: left; }
+.App main { display: block; }
+section { scroll-margin-top: 1rem; }
