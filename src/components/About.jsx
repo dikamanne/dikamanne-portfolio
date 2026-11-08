@@ -15,11 +15,10 @@ export default function About() {
 
       <div className="about-text">
         <p className="hand">about</p>
-        <h3>Research first, design second, impact always.</h3>
+        <h3>interactive research and visuals!</h3>
         <p>
-          Replace this with two or three sentences: what you study, what you’re building toward
-          (graphics reporting, investigative research, policy analysis) and why. Recruiters skim,
-          so lead with the clearest line.
+          Hi all! I'm Dika Manne and I hope to build interactive and visual websites that explore
+          history, politics, and law in the regions of West Africa, MENA and South Asia. 
         </p>
         <ul className="chips" aria-label="Interests">
           {interests.map((t) => <li key={t}>{t}</li>)}
